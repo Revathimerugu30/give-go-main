@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
-import { MapPin, Phone, Search } from "lucide-react";
+import { MapPin, Search } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
@@ -82,9 +82,6 @@ function Ngos() {
                 <h2 className="text-lg font-semibold">{n.name}</h2>
                 <p className="flex items-center gap-1.5 text-sm text-muted-foreground">
                   <MapPin className="size-4" /> {n.city}
-                </p>
-                <p className="flex items-center gap-1.5 text-sm text-muted-foreground">
-                  <Phone className="size-4" /> {n.phone}
                 </p>
                 <div className="mt-2 flex flex-wrap gap-1.5">
                   {n.needs.map((need) => (
