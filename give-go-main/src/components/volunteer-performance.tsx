@@ -1,15 +1,17 @@
-import { Loader2, Star, Timer, Trophy, Truck } from "lucide-react";
+import { Loader2, Star, Timer, Trophy, Truck, MessageCircle } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { StatCard } from "@/components/stat-card";
 import { EmptyState } from "@/components/empty-state";
 import { useVolunteerLeaderboard } from "@/hooks/use-rewards";
+import { useVolunteerRatings } from "@/hooks/use-volunteer-rating";
 import { useRealtime } from "@/hooks/use-realtime";
 import { useAuth } from "@/lib/auth";
 
 export function VolunteerPerformance() {
   const { user } = useAuth();
   const q = useVolunteerLeaderboard();
+  const ratings = useVolunteerRatings(user?.id ?? null);
   useRealtime("volunteer-performance", ["donations", "volunteer_ratings"]);
 
   if (q.isLoading)
@@ -90,6 +92,36 @@ export function VolunteerPerformance() {
           ))}
         </ul>
       </Card>
+
+      {ratings.data && ratings.data.length > 0 && (
+        <Card className="glass-card p-5">
+          <p className="mb-4 flex items-center gap-2 font-medium">
+            <MessageCircle className="size-4" /> Recent feedback
+          </p>
+          <ul className="space-y-3">
+            {ratings.data.slice(0, 5).map((r) => (
+              <li key={r.id} className="rounded-lg border border-border/50 p-3">
+                <div className="flex items-center gap-2">
+                  {[...Array(5)].map((_, i) => (
+                    <Star
+                      key={i}
+                      className={`size-3.5 ${
+                        i < r.rating ? "fill-warning text-warning" : "text-muted-foreground/30"
+                      }`}
+                    />
+                  ))}
+                  <span className="text-xs text-muted-foreground">
+                    {new Date(r.created_at).toLocaleDateString()}
+                  </span>
+                </div>
+                {r.comment && (
+                  <p className="mt-2 text-sm text-muted-foreground">"{r.comment}"</p>
+                )}
+              </li>
+            ))}
+          </ul>
+        </Card>
+      )}
     </div>
   );
 }

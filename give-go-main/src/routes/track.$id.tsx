@@ -9,6 +9,7 @@ import { LiveMap, type MapPoint } from "@/components/live-map";
 import { TrackingTimeline } from "@/components/tracking-timeline";
 import { StatusBadge } from "@/components/status-badge";
 import { DonationImages } from "@/components/donation-images";
+import { VolunteerRatingForm } from "@/components/volunteer-rating-form";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -226,6 +227,14 @@ function TrackPage() {
                 </>
               )}
             </Card>
+
+            {["completed", "delivered"].includes(d.status) && d.volunteer_id && user?.id === d.donor_id && (
+              <VolunteerRatingForm
+                donationId={d.id}
+                volunteerId={d.volunteer_id}
+                volunteerName={volunteer.data?.profile?.full_name}
+              />
+            )}
           </div>
 
           <Card className="p-5">
