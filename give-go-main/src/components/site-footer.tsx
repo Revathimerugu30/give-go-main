@@ -67,7 +67,7 @@ export function SiteFooter() {
               <Mail className="size-4" /> hello@shareat.com
             </li>
             <li className="flex items-center gap-2">
-              <Phone className="size-4" /> +91 90000 12345
+              <Phone className="size-4" /> +91 9876543210
             </li>
             <li className="flex items-center gap-2">
               <MapPin className="size-4" /> Pune, India

@@ -60,8 +60,8 @@ function Contact() {
         <div className="space-y-4">
           {[
             { icon: Mail, label: "Email", value: "hello@shareat.com" },
-            { icon: Phone, label: "Phone", value: "+91 90000 12345" },
-            { icon: MapPin, label: "Office", value: "Baner, Pune 411045" },
+            { icon: Phone, label: "Phone", value: "+91 9876543210" },
+            { icon: MapPin, label: "Office", value: "Pune" },
           ].map((c) => (
             <Card key={c.label} className="glass-card flex-row items-center gap-4 p-5">
               <span className="flex size-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
