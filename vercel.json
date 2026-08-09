@@ -1,6 +1,6 @@
 {
   "framework": "vite",
-  "installCommand": "bun install --cwd give-go-main",
-  "buildCommand": "bun run build --cwd give-go-main",
-  "outputDirectory": "give-go-main/.output/public"
+  "installCommand": "bun install",
+  "buildCommand": "bun run build",
+  "outputDirectory": ".output/public"
 }
