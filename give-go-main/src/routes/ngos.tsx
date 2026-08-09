@@ -26,12 +26,12 @@ export const Route = createFileRoute("/ngos")({
 
 /** Directory of partner organisations shown on the public site. */
 const NGOS = [
-  { name: "Asha Foundation", city: "Pune", needs: ["Clothes", "Books"], phone: "+91 90000 11111" },
-  { name: "Seva Kitchen", city: "Mumbai", needs: ["Kitchen Items"], phone: "+91 90000 22222" },
-  { name: "Roshni Trust", city: "Delhi", needs: ["Clothes", "Toys"], phone: "+91 90000 33333" },
-  { name: "Gyan Setu", city: "Bengaluru", needs: ["Books", "Electronics"], phone: "+91 90000 44444" },
-  { name: "Nayi Disha", city: "Jaipur", needs: ["Furniture", "Clothes"], phone: "+91 90000 55555" },
-  { name: "Sahyog Care", city: "Pune", needs: ["Footwear", "Toys"], phone: "+91 90000 66666" },
+  { name: "Asha Foundation", city: "Pune", needs: ["Clothes", "Books"] },
+  { name: "Seva Kitchen", city: "Mumbai", needs: ["Kitchen Items"] },
+  { name: "Roshni Trust", city: "Delhi", needs: ["Clothes", "Toys"] },
+  { name: "Gyan Setu", city: "Bengaluru", needs: ["Books", "Electronics"] },
+  { name: "Nayi Disha", city: "Jaipur", needs: ["Furniture", "Clothes"] },
+  { name: "Sahyog Care", city: "Pune", needs: ["Footwear", "Toys"] },
 ];
 
 function Ngos() {
