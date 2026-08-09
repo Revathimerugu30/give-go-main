@@ -1,0 +1,6 @@
+{
+  "framework": "vite",
+  "installCommand": "cd give-go-main && bun install",
+  "buildCommand": "cd give-go-main && bun run build",
+  "outputDirectory": "give-go-main/.output/public"
+}
