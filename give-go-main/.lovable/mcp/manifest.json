@@ -1,0 +1,181 @@
+{
+  "version": 1,
+  "sdk_version": "0.26.1",
+  "path": "/mcp",
+  "auth": {
+    "type": "oauth",
+    "issuer": "https://hlmnriesfmmfglsjrbyv.supabase.co/auth/v1",
+    "accepted_audiences": [
+      "authenticated"
+    ]
+  },
+  "mcp": {
+    "server": {
+      "name": "shareat",
+      "version": "0.1.0",
+      "title": "ShareAt"
+    },
+    "tools": [
+      {
+        "name": "list_my_donations",
+        "title": "List my donations",
+        "description": "List the signed-in user's donations on ShareAt, most recent first, optionally filtered by status.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "status": {
+              "description": "Optional donation status filter, e.g. pending, approved, delivered.",
+              "type": "string"
+            },
+            "limit": {
+              "description": "Maximum rows to return (default 20).",
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 50
+            }
+          }
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "track_donation",
+        "title": "Track a donation",
+        "description": "Get the full status, pickup details and tracking timeline events for one donation the signed-in user can access.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "donation_id": {
+              "type": "string",
+              "description": "The donation id (UUID)."
+            }
+          },
+          "required": [
+            "donation_id"
+          ]
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "create_donation",
+        "title": "Create a donation",
+        "description": "Create a new donation listing on ShareAt for the signed-in user. It is submitted as pending for admin review.",
+        "annotations": {
+          "readOnlyHint": false,
+          "destructiveHint": false,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string",
+              "minLength": 2,
+              "description": "Short title of the item, e.g. 'Winter jackets'."
+            },
+            "category": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Category name, e.g. Clothes, Books, Electronics, Footwear."
+            },
+            "quantity": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 9007199254740991,
+              "description": "Number of items."
+            },
+            "city": {
+              "type": "string",
+              "minLength": 1,
+              "description": "City for the pickup."
+            },
+            "pickup_address": {
+              "type": "string",
+              "minLength": 3,
+              "description": "Full pickup address."
+            },
+            "description": {
+              "description": "Optional details about the items.",
+              "type": "string"
+            },
+            "condition": {
+              "description": "Item condition, e.g. new, good, used.",
+              "type": "string"
+            },
+            "pickup_date": {
+              "description": "Preferred pickup date as YYYY-MM-DD.",
+              "type": "string"
+            },
+            "pickup_time": {
+              "description": "Preferred pickup time window, e.g. '09:00 - 12:00'.",
+              "type": "string"
+            }
+          },
+          "required": [
+            "title",
+            "category",
+            "quantity",
+            "city",
+            "pickup_address"
+          ]
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "list_my_notifications",
+        "title": "List my notifications",
+        "description": "List the signed-in user's ShareAt notifications, newest first.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "unread_only": {
+              "description": "Only return unread notifications.",
+              "type": "boolean"
+            },
+            "limit": {
+              "description": "Maximum rows to return (default 20).",
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 50
+            }
+          }
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "get_my_rewards",
+        "title": "Get my rewards",
+        "description": "Get the signed-in user's total reward points, recent point entries and unlocked achievements on ShareAt.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {}
+        },
+        "outputSchema": null
+      }
+    ]
+  }
+}
